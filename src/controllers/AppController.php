@@ -20,7 +20,10 @@ class AppController {
                  
         if(file_exists($templatePath)){
             extract($variables);
-            
+            // ["tab_name" => $title]
+
+            // $tab_name = $title
+
             ob_start();
             include $templatePath;
             $output = ob_get_clean();
