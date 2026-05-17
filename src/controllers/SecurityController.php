@@ -28,7 +28,7 @@ class SecurityController extends AppController {
             return $this->render('login', ['messages' => 'Wrong password']);
         }
 
-        // TODO CREATE USER SESSION AND REDIRECT TO DASHBOARD
+        // TODO: CREATE USER SESSION AND REDIRECT TO DASHBOARD
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/dashboard");
         return;

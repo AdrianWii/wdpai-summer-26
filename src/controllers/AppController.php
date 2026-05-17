@@ -12,6 +12,15 @@ class AppController {
         return $_SERVER["REQUEST_METHOD"] === 'POST';
     }
  
+    protected function isLoggedIn() {
+          if (!isset($_SESSION['user_id'])) {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/login");
+            return false;
+          }
+          return true;
+    }
+    
     protected function render(string $template = null, array $variables = [])
     {
         $templatePath = 'public/views/'. $template.'.html';
