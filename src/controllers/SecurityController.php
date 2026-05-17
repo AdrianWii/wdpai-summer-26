@@ -6,19 +6,32 @@ require_once __DIR__.'/../repositories/UsersRepository.php';
 class SecurityController extends AppController {
 
     public function login() {
-        // TODO sprawdzeie czy user istnieje
-
-        if ($this->isPost()) {
-            // return $this->render("dashboard");
-
-            var_dump($_POST);
-            //
-
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location: {$url}/dashboard");
+        if (!$this->isPost()) {
+            return $this->render('login');
         }
 
-        return $this->render("login");
+        $email = trim($_POST["email"] ?? '');
+        $password = $_POST["password"] ?? '';
+
+        if (empty($email) || empty($password)) {
+            return $this->render('login', ['messages' => 'Fill all fields']);
+        }
+
+        $userRepository = new UsersRepository();
+        $user = $userRepository->getUserByEmail($email);
+
+        if (!$user) {
+            return $this->render('login', ['messages' => 'User not found']);
+        }
+
+        if (!password_verify($password, $user['password'])) {
+            return $this->render('login', ['messages' => 'Wrong password']);
+        }
+
+        // TODO CREATE USER SESSION AND REDIRECT TO DASHBOARD
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/dashboard");
+        return;
     }
 
     public function register() {
