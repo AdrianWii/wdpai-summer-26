@@ -1,8 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <?php include __DIR__ . '/partials/head.html'; ?>
     <link rel="stylesheet" type="text/css" href="public/styles/register.css" />
+    <script src="public/scripts/validate.js" defer></script>
+
     <title>Register</title>
   </head>
   <body class="auth-page register-page">
@@ -15,9 +17,7 @@
 
         <?php if(isset($messages)): ?>
 
-        <p class="messages">
-          <?= $messages ?>
-        </p>
+        <p class="messages"><?= $messages ?></p>
 
         <?php endif; ?>
         <label>
