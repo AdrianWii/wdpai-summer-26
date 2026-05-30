@@ -22,7 +22,33 @@ search.addEventListener("keyup", function (event) {
       })
       .then(function (users) {
         usersContainer.innerHTML = "";
-        // loadUsers(users);
+        loadUsers(users);
       });
   }
 });
+
+function loadUsers(users) {
+  users.forEach(function (user) {
+    const userElement = document.createElement("article");
+    userElement.classList.add("user-row");
+
+    const avatar = document.createElement("span");
+    avatar.textContent = user.full_name.charAt(0).toUpperCase();
+    avatar.classList.add("user-avatar");
+
+    const userDiv = document.createElement("div");
+
+    const username = document.createElement("h2");
+    username.textContent = user.username;
+
+    const fullname = document.createElement("p");
+    fullname.textContent = user.full_name;
+
+    userDiv.appendChild(username);
+    userDiv.appendChild(fullname);
+
+    userElement.appendChild(avatar);
+    userElement.appendChild(userDiv);
+    usersContainer.appendChild(userElement);
+  });
+}
