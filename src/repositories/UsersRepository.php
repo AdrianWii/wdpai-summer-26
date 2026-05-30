@@ -64,4 +64,17 @@ class UsersRepository extends Repository {
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function deleteUser(int $id): bool {
+        $query = $this->database->connect()->prepare(
+            "
+            DELETE FROM users
+            WHERE id = :id
+            "
+        );
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+
+        return $query->rowCount() > 0;
+    }
 }

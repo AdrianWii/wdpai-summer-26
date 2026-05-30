@@ -60,7 +60,7 @@
 
 .user-row {
   display: grid;
-  grid-template-columns: 46px minmax(0, 1fr);
+  grid-template-columns: 46px minmax(0, 1fr) 40px;
   gap: 0.9rem;
   align-items: center;
   padding: 1rem 1.2rem;
@@ -87,6 +87,34 @@
   margin: 0 0 0.2rem;
   color: var(--color-text);
   font-size: 1rem;
+}
+
+.delete-user-button {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: #b42318;
+  cursor: pointer;
+}
+
+.delete-user-button:hover {
+  border-color: #f4a7a0;
+  background: #fff4f2;
+}
+
+.delete-user-button svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
 }
 
 .index-aside {

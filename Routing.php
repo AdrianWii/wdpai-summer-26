@@ -33,6 +33,10 @@ class Routing {
             "controller" => "UsersController",
             "action" => "search"
         ],
+        "delete-user" => [
+            "controller" => "UsersController",
+            "action" => "delete"
+        ],
     ];
 
     public static function run(string $path) {
@@ -43,6 +47,7 @@ class Routing {
             case 'login':
             case 'register':
             case 'search':
+            case 'delete-user':
                 $controller = Routing::$routes[$path]["controller"];
                 $action = Routing::$routes[$path]["action"];
 
