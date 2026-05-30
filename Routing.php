@@ -2,6 +2,7 @@
 
 require_once 'src/controllers/SecurityController.php';
 require_once 'src/controllers/DashboardController.php';
+require_once 'src/controllers/UsersController.php';
 
 // TODO musimy zapewnic, ze utworzony 
 // obiekt kontrollera ma tylko jedna instancję - SINGLETON
@@ -28,6 +29,10 @@ class Routing {
             "controller" => "SecurityController",
             "action" => "register"
         ],
+        "search" => [
+            "controller" => "UsersController",
+            "action" => "search"
+        ],
     ];
 
     public static function run(string $path) {
@@ -37,6 +42,7 @@ class Routing {
             case '':
             case 'login':
             case 'register':
+            case 'search':
                 $controller = Routing::$routes[$path]["controller"];
                 $action = Routing::$routes[$path]["action"];
 

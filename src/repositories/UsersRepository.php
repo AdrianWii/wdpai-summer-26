@@ -49,4 +49,19 @@ class UsersRepository extends Repository {
             $hashedPassword
         ]);
     }
+
+
+    public function searchUsers(string $searchTerm): array {
+        $query = $this->database->connect()->prepare(
+            "
+            SELECT * FROM users 
+            WHERE username LIKE :search OR email LIKE :search OR full_name LIKE :search
+            "
+        );
+        $likeTerm = '%' . $searchTerm . '%';
+        $query->bindParam(':search', $likeTerm);
+        $query->execute();
+
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
